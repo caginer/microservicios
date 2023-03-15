@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:${int(0)}}
+  port: ${PORT:int(0)}
 eureka:
   client:
     fetch-registry: true
