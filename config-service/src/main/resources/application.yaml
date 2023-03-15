@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          default-label: eureka
+          default-label: multiple-services
           uri: https://github.com/caginer/microservicios
           search-paths: config-data
   application:
