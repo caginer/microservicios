@@ -83,7 +83,7 @@ public class UsuarioController {
 		return ResponseEntity.ok(motos);
 	}
 
-	@CircuitBreaker(name = "carrosCB", fallbackMethod = "fallBackSaveCarros")
+	@CircuitBreaker(name = "carrosCB", fallbackMethod = "fallBackSaveCarro")
 	@PostMapping("/carro/{usuarioId}")
 	public ResponseEntity<Carro> guardarCarro(@PathVariable("usuarioId") int usuarioId, @RequestBody Carro carro) {
 
@@ -92,7 +92,7 @@ public class UsuarioController {
 
 	}
 
-	@CircuitBreaker(name = "motosCB", fallbackMethod = "fallBackSaveMotos")
+	@CircuitBreaker(name = "motosCB", fallbackMethod = "fallBackSaveMoto")
 	@PostMapping("/moto/{usuarioId}")
 	public ResponseEntity<Moto> guardarMoto(@PathVariable("usuarioId") int usuarioId, @RequestBody Moto moto) {
 
@@ -127,7 +127,7 @@ public class UsuarioController {
 		return new ResponseEntity("El usuario : " + usuarioId + "no tiene dinero para las motos", HttpStatus.OK);
 	}
 
-	private ResponseEntity<List<Carro>> fallBackGetTodos(@PathVariable("usuarioId") int usuarioId,
+	private ResponseEntity<Map<String, Object>> fallBackGetTodos(@PathVariable("usuarioId") int usuarioId,
 			RuntimeException ex) {
 		return new ResponseEntity("El usuario : " + usuarioId + "tiene los vehiculos en el taller", HttpStatus.OK);
 	}
